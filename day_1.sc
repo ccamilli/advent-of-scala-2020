@@ -1,5 +1,4 @@
 import scala.io.Source
-import scala.collection.Set
 import scala.annotation.tailrec
 
 def read_input_file(filename: String): List[Int] = {

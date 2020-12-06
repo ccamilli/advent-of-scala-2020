@@ -8,32 +8,26 @@ def readInputFile(filename: String): List[String] = {
   ret
 }
 
-def binarySearch(seq: String, upChar: Char, downChar: Char): Int = {
+def binarySearch(seq: String, upChar: Char): Int = {
   @tailrec
-  def binarySearchAcc(seq: String, upChar: Char, downChar: Char, pow: Int, acc:Int): Int = {
+  def binarySearchAcc(seq: String, upChar: Char, pow: Int, acc:Int): Int = {
     if (seq.length == 0) acc else {
       val mult = if (seq.head == upChar) 1 else 0
-      binarySearchAcc(seq.drop(1), upChar, downChar, pow*2, acc + mult*pow)
+      binarySearchAcc(seq.drop(1), upChar, pow*2, acc + mult*pow)
     }
   }
-  binarySearchAcc(seq.reverse, upChar, downChar, 1, 0)
+  binarySearchAcc(seq.reverse, upChar, 1, 0)
 }
 
-def parseLine(row: String): Int = {
-  val rowInfo = row take 7
-  val columnInfo = row takeRight 3
-  8*binarySearch(rowInfo, 'B', 'F') + binarySearch(columnInfo, 'R', 'L')
-}
+def parseLine(row: String): Int =
+  8*binarySearch(row take 7, 'B') + binarySearch(row takeRight 3, 'R')
 
-def solvePart1(filename: String) = {
+def solvePart1(filename: String): Int =
   readInputFile(filename).map(x => parseLine(x)).max
-}
 
 def solvePart2(filename: String): Int = {
   val seatIds = readInputFile(filename).map(x => parseLine(x)).toSet
-  val min = seatIds.min
-  val max = seatIds.max
-  (min to max).filter(x => !seatIds.contains(x)).head
+  (seatIds.min to seatIds.max).filter(x => !seatIds.contains(x)).head
 }
 
 val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_5.txt"
