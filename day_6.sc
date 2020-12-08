@@ -27,7 +27,7 @@ def solvePart2(input: List[String]): Int = {
   def solvePart2Acc(input: List[String], totalAcc: Int, count: Int, seen: Set[Char]): Int = {
     input match {
       case r::rs => {
-        if (r == "") solvePart2Acc(rs, totalAcc + seen.size, 0,  Set())
+        if (r == "") solvePart2Acc(rs, totalAcc + seen.size, 0, Set())
         else {
           if (count == 0)
             solvePart2Acc(rs, totalAcc, count + 1, r.foldLeft(seen)((s, el) => s + el))

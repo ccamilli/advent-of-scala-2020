@@ -2,15 +2,19 @@ import scala.io.Source
 
 case class PuzzleInput(minLetters: Int, maxLetters: Int, letter: Char, password: String)
 
-def parse_input_line(line: String): PuzzleInput = {
+def parseInputLine(line: String): PuzzleInput = {
   val splittedLine = line.split(" ")
   val lims = splittedLine(0).split('-')
   val letter = splittedLine(1).head
   PuzzleInput(lims(0).toInt, lims(1).toInt, letter, splittedLine(2))
 }
 
-def read_input_file(filename: String): List[PuzzleInput] =
-  Source.fromFile(filename).getLines.map(parse_input_line).toList
+def readInputFile(filename: String): List[PuzzleInput] = {
+  val testTxtSource = Source.fromFile(filename)
+  val ret = testTxtSource.getLines.map(parseInputLine).toList
+  testTxtSource.close()
+  ret
+}
 
 def checkValidity1(inputLine: PuzzleInput): Boolean = {
   val count = inputLine.password.count(c => c == inputLine.letter)
@@ -19,20 +23,27 @@ def checkValidity1(inputLine: PuzzleInput): Boolean = {
 
 def checkValidity2(inputLine: PuzzleInput): Boolean = {
   val maxIndex = inputLine.password.length
-  val checkLeft = if (inputLine.minLetters <= maxIndex) inputLine.password(inputLine.minLetters - 1) == inputLine.letter else false
-  val checkRight = if (inputLine.maxLetters <= maxIndex) inputLine.password(inputLine.maxLetters - 1) == inputLine.letter else false
-    (checkLeft ^ checkRight)
+  val checkLeft =
+    if (inputLine.minLetters <= maxIndex)
+      inputLine.password(inputLine.minLetters - 1) == inputLine.letter
+    else false
+  val checkRight =
+    if (inputLine.maxLetters <= maxIndex)
+      inputLine.password(inputLine.maxLetters - 1) == inputLine.letter
+    else false
+
+  (checkLeft ^ checkRight)
 }
 
-def solve_part_1(puzzle_input: List[PuzzleInput]): Int =
+def solvePart1(puzzle_input: List[PuzzleInput]): Int =
   puzzle_input.count(checkValidity1)
 
-def solve_part_2(puzzle_input: List[PuzzleInput]): Int =
+def solvePart2(puzzle_input: List[PuzzleInput]): Int =
   puzzle_input.count(checkValidity2)
 
 val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_2.txt"
 
-val puzzle_input = read_input_file(filepath)
+val puzzleInput = readInputFile(filepath)
 
-solve_part_1(puzzle_input)
-solve_part_2(puzzle_input)
+solvePart1(puzzleInput)
+solvePart2(puzzleInput)
