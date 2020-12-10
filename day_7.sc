@@ -20,7 +20,7 @@ def parseLine(line: String): (String, List[(Int, String)]) = {
 }
 
 def buildGraph(filename: String): Map[String, List[(Int, String)]] = {
-  readInputFile(filename).foldLeft(Map.empty[String, List[(Int, String)]])((m, el) => m ++ List(parseLine(el)))
+  readInputFile(filename).foldLeft(Map.empty[String, List[(Int, String)]])((m, el) => m + parseLine(el))
 }
 
 def graphSearch(graph: Map[String, List[(Int, String)]], item: String): Int = {
@@ -29,7 +29,7 @@ def graphSearch(graph: Map[String, List[(Int, String)]], item: String): Int = {
       case (_, contained) => contained}.toSet.contains(item)
     }.keys
     if (firstLevelConnections.isEmpty) Set.empty[String] else
-      firstLevelConnections.map(x => graphSearchAcc(graph, x) ++ Set(x)).reduce(_ ++ _)
+      firstLevelConnections.map(x => graphSearchAcc(graph, x) + x).reduce(_ ++ _)
   }
   graphSearchAcc(graph, item).size
 }

@@ -12,7 +12,7 @@ def twoSum(vals: List[Int], target: Int): Option[(Int, Int)] = {
   @tailrec
   def twoSumAcc(vals_left: List[Int], target: Int, seen: Set[Int]): Option[(Int, Int)] = {
     vals_left match {
-      case v::vs => if (seen.contains(target - v)) Some((v, target - v)) else twoSumAcc(vs, target, seen ++ Set(v))
+      case v::vs => if (seen.contains(target - v)) Some((v, target - v)) else twoSumAcc(vs, target, seen + v)
       case _ => None
     }
   }
@@ -26,7 +26,7 @@ def threeSum(vals: List[Int], target: Int): Option[(Int, Int, Int)] = {
       case v::vs => {
         twoSum(vs, target-v) match {
           case Some((a, b)) => Some((v, a, b))
-          case None => threeSumAcc(vs, target, seen ++ Set(v))
+          case None => threeSumAcc(vs, target, seen + v)
         }
       }
       case _ => None
