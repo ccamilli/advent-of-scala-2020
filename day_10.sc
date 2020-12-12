@@ -1,11 +1,11 @@
 import scala.annotation.tailrec
 import scala.io.Source
 
-def readInputFile(filename: String): List[Int] = {
+def readInputFile(filename: String): List[String] = {
   val testTxtSource = Source.fromFile(filename)
   val ret = testTxtSource.getLines.toList
   testTxtSource.close()
-  ret.map(x => x.toInt)
+  ret
 }
 
 def solvePart1(filename: String): Int = {
@@ -19,7 +19,8 @@ def solvePart1(filename: String): Int = {
         else solvePart1Acc(tl, diff1, diff3, hd)
       }
       case _ => diff1 * (diff3+1)
-    }}
+    }
+  }
   solvePart1Acc(readInputFile(filename).sorted, 0, 0, 0)
 }
 
