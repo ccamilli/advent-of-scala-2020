@@ -11,7 +11,7 @@ def readInputFile(filename: String): List[String] = {
 type HierarchyList = List[(Char, Int)]
 
 @tailrec
-def getHierarchyListLoop(exprLeft: String, priority:Int, out: HierarchyList): HierarchyList = {
+def getHierarchyListLoop(exprLeft: String, priority: Int, out: HierarchyList): HierarchyList = {
   if (exprLeft == "") out
   else {
     val c = exprLeft.head
@@ -23,7 +23,7 @@ def getHierarchyListLoop(exprLeft: String, priority:Int, out: HierarchyList): Hi
   }
 }
 
-def getHierarchyList(expr: String): HierarchyList= {
+def getHierarchyList(expr: String): HierarchyList = {
   getHierarchyListLoop(expr, 0, List())
 }
 

@@ -9,7 +9,7 @@ def readInputFile(filename: String): List[String] = {
   ret
 }
 
-abstract class Rule
+trait Rule
 case class Singleton(ch: Char) extends Rule
 case class RuleCombo(pats: List[Rule]) extends Rule
 case class RuleOption(ops: (Rule, Rule)) extends Rule
