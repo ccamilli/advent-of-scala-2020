@@ -25,7 +25,7 @@ def isolateTiles(puzzleInput: List[String]): Map[Int, Img] = {
         else
           if (hd == "") isolateTilesLoop(tl, curId, List(), tileMap + (curId -> curTile))
           else isolateTilesLoop(tl, curId, curTile :+ hd, tileMap)
-      case _ => tileMap
+      case _ => tileMap + (curId -> curTile)
     }
     }
   isolateTilesLoop(puzzleInput, 0, List(), Map())
@@ -184,14 +184,14 @@ val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of co
 
 val mapTiles = isolateTiles(readInputFile(filepath))
 
-val edgeList = mapTiles.flatMap{
+val edgeList = mapTiles.toList.flatMap{
   case (k, v) => isolateEdges(k, v)
 }
 
 val neighbors = (
   for ((id, str) <- edgeList)
-    yield (id, edgeList.filter(x => (x._2 == str | x._2 == str.reverse) && x._1 != id).keys)).
-  groupBy(_._1).map {case (k, v) => (k, v.flatMap(_._2).toList)}
+    yield (id, edgeList.filter(x => (x._2 == str | x._2 == str.reverse) && x._1 != id))).
+  groupBy(_._1).map {case (k, v) => (k, v.flatMap(_._2).map(_._1))}
 
 val image = buildFullImage(neighbors, mapTiles)
 

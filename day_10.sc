@@ -1,11 +1,11 @@
 import scala.annotation.tailrec
 import scala.io.Source
 
-def readInputFile(filename: String): List[String] = {
+def readInputFile(filename: String): List[Int] = {
   val testTxtSource = Source.fromFile(filename)
   val ret = testTxtSource.getLines.toList
   testTxtSource.close()
-  ret
+  ret.map(x => x.toInt)
 }
 
 def solvePart1(filename: String): Int = {
@@ -27,7 +27,7 @@ def solvePart1(filename: String): Int = {
 def solvePart2(sortedArray: Array[Int]): Long = {
     if (sortedArray.length <= 2) if (sortedArray.max - sortedArray.min <= 3) 1 else 0
     else {
-      val splitPoint: Int = sortedArray.size / 2
+      val splitPoint: Int = sortedArray.length / 2
       val splitEl: Int = sortedArray(splitPoint)
       val (left, right) = sortedArray.splitAt(splitPoint)
       solvePart2(left ++ Array(splitEl)) * solvePart2(right) +

@@ -115,7 +115,7 @@ def solvePart2(grid: Grid): Int = {
 }
 
 val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_11.txt"
-
 val grid = createGrid(readInputFile(filepath))
+
 solvePart1(grid)
 solvePart2(grid)

@@ -1,6 +1,7 @@
 import scala.io.Source
 import scala.math.floorMod
-import scala.collection.mutable
+import scala.annotation.tailrec
+
 
 def readInputFile(filename: String): Array[Int] = {
   val testTxtSource = Source.fromFile(filename)
@@ -9,17 +10,15 @@ def readInputFile(filename: String): Array[Int] = {
   ret.head.map(x => x.toString.toInt).toArray
 }
 
-def simulateCupsEfficiently(cupStats: mutable.Map[Int, (Int, Int)], curEl: Int,
-                            movesLeft: Int, modulo: Int): mutable.Map[Int, (Int, Int)] = {
+@tailrec
+def simulateCupsEfficiently(cupStats: Map[Int, Int], curEl: Int,
+                            movesLeft: Int, modulo: Int): Map[Int, Int] = {
   if (movesLeft == 0) cupStats
   else {
-    val r1 = cupStats(curEl)._2
-    val r2 = cupStats(r1)._2
-    val r3 = cupStats(r2)._2
-    val newRight = cupStats(r3)._2
-
-    cupStats(newRight) = (curEl, cupStats(newRight)._2)
-    cupStats(curEl) = (cupStats(curEl)._1, newRight)
+    val r1 = cupStats(curEl)
+    val r2 = cupStats(r1)
+    val r3 = cupStats(r2)
+    val newEl = cupStats(r3)
 
     val elems = Set(r1, r2, r3)
 
@@ -31,42 +30,40 @@ def simulateCupsEfficiently(cupStats: mutable.Map[Int, (Int, Int)], curEl: Int,
           if (!elems.contains(floorMod(curEl - 4, modulo) + 1)) floorMod(curEl - 4, modulo) + 1
           else floorMod(curEl - 5, modulo) + 1
     }
-    val (lbLeft, lbRight) = cupStats(targetLabel).copy()
 
-    cupStats(targetLabel) = (lbLeft, r1)
-    cupStats(r1) = (targetLabel, r2)
+    val lbRight = cupStats(targetLabel)
 
-    cupStats(r3) = (r2, lbRight)
-    cupStats(lbRight) = (r3, cupStats(lbRight)._2)
+    val listUpdates = List((curEl, newEl), (targetLabel, r1), (r3, lbRight))
 
-    simulateCupsEfficiently(cupStats, cupStats(curEl)._2, movesLeft - 1, modulo)
-
+    simulateCupsEfficiently(listUpdates.foldLeft(cupStats)((x, el) => x + el),
+      newEl, movesLeft - 1, modulo)
   }
 }
 
-def initializeCupStats(puzzleInput: Array[Int]): Map[Int, (Int, Int)] = {
+def initializeCupStats(puzzleInput: Array[Int]): Map[Int, Int] = {
   val mod = puzzleInput.length
   puzzleInput.zipWithIndex.map{
-    case (el, ix) => (el, (puzzleInput(floorMod(ix - 1, mod)), puzzleInput(floorMod(ix + 1, mod))))
-  }
-}.toMap
+    case (el, ix) => (el, puzzleInput(floorMod(ix + 1, mod)))
+  }.toMap
+}
 
-def prettyPrint(map: mutable.Map[Int, (Int, Int)], curVal: Int, cumul: String): String = {
+@tailrec
+def prettyPrint(map: Map[Int, Int], curVal: Int, cumul: String): String = {
   if (curVal == 1) cumul
-  else prettyPrint(map, map(curVal)._2, cumul + curVal)
+  else prettyPrint(map, map(curVal), cumul + curVal)
 }
 
 def solvePart1(puzzleInput: Array[Int]): String = {
-  val initialMutableMap = mutable.Map(initializeCupStats(puzzleInput).toSeq: _*)
-  val finalMap = simulateCupsEfficiently(initialMutableMap, puzzleInput(0), 100, puzzleInput.length)
-  prettyPrint(finalMap, finalMap(1)._2, "")
+  val initialMap = initializeCupStats(puzzleInput)
+  val finalMap = simulateCupsEfficiently(initialMap, puzzleInput(0), 100, puzzleInput.length)
+  prettyPrint(finalMap, finalMap(1), "")
 }
 
 def solvePart2(puzzleInput: Array[Int]): Long = {
-  val initialMutableMap = mutable.Map(initializeCupStats(puzzleInput ++ (10 to 1000000).toArray).toSeq: _*)
-  val finalMap = simulateCupsEfficiently(initialMutableMap, puzzleInput(0), 10000000, initialMutableMap.size)
-  val var1 = finalMap(1)._2
-  val var2 = finalMap(var1)._2
+  val initialMap = initializeCupStats(puzzleInput ++ (10 to 1000000).toArray)
+  val finalMap = simulateCupsEfficiently(initialMap, puzzleInput(0), 10000000, initialMap.size)
+  val var1 = finalMap(1)
+  val var2 = finalMap(var1)
   var1.toLong * var2.toLong
 }
 
@@ -76,5 +73,3 @@ val puzzleInput = readInputFile(filepath)
 
 solvePart1(puzzleInput)
 solvePart2(puzzleInput)
-
-

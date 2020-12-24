@@ -80,6 +80,7 @@ def solvePart2(instrList: List[String]): Int = {
 
 val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_12.txt"
 val inputList = readInputFile(filepath)
+
 solvePart1(inputList)
 solvePart2(inputList)
 

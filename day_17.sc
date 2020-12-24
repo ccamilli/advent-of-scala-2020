@@ -1,6 +1,14 @@
 import scala.annotation.tailrec
 import scala.io.Source
 
+
+def readInputFile(filename: String): List[String] = {
+  val testTxtSource = Source.fromFile(filename)
+  val ret = testTxtSource.getLines.toList
+  testTxtSource.close()
+  ret
+}
+
 case class GridPosition(x:Int, y:Int, z:Int, w:Int)
 case class Grid(cells: Map[GridPosition, Char], fourD: Boolean = false) {
   val (minX, maxX) = (cells.keys.map(_.x).min, cells.keys.map(_.x).max)
@@ -40,13 +48,6 @@ case class Grid(cells: Map[GridPosition, Char], fourD: Boolean = false) {
   }
 }
 
-def readInputFile(filename: String): List[String] = {
-  val testTxtSource = Source.fromFile(filename)
-  val ret = testTxtSource.getLines.toList
-  testTxtSource.close()
-  ret
-}
-
 def createGrid(puzzleInput: List[String], fourD: Boolean = false): Grid = {
   @tailrec
   def parseColAcc(line: String, acc: Int, y: Int, colAcc: Map[GridPosition, Char]): Map[GridPosition, Char] = {
@@ -67,13 +68,13 @@ def createGrid(puzzleInput: List[String], fourD: Boolean = false): Grid = {
 }
 
 def solvePart1(puzzleInput: List[String]): Long = {
-  createGrid(puzzleInput, false).simulateRounds(6).cells.count{
+  createGrid(puzzleInput).simulateRounds(6).cells.count{
     case (_, v) => (v == '#')
   }
 }
 
 def solvePart2(puzzleInput: List[String]): Long = {
-  createGrid(puzzleInput, true).simulateRounds(6).cells.count{
+  createGrid(puzzleInput, fourD=true).simulateRounds(6).cells.count{
     case (_, v) => (v == '#')
   }
 }

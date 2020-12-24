@@ -32,7 +32,7 @@ def checkValidity2(inputLine: PuzzleInput): Boolean = {
       inputLine.password(inputLine.maxLetters - 1) == inputLine.letter
     else false
 
-  (checkLeft ^ checkRight)
+  checkLeft ^ checkRight
 }
 
 def solvePart1(puzzle_input: List[PuzzleInput]): Int =

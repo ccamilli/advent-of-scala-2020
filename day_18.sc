@@ -60,20 +60,20 @@ def splitPriorityMaxLoop(hListLeft: HierarchyList, out: HierarchyList,
       val (c, prio) = hd
       if (prio == maxP && cumulMode) {
         val (ix, str) = currAcc
-        splitPriorityMaxLoop(tail, out, (ix, str :+ c), maxP, true, evalFunc)
+        splitPriorityMaxLoop(tail, out, (ix, str :+ c), maxP, cumulMode=true, evalFunc)
       }
       else
         if (prio == maxP && !cumulMode) {
-          splitPriorityMaxLoop(tail, out, (-1, c.toString), maxP, true, evalFunc)
+          splitPriorityMaxLoop(tail, out, (-1, c.toString), maxP, cumulMode=true, evalFunc)
         }
         else
           if (prio != maxP && cumulMode) {
             splitPriorityMaxLoop(tail,
               out ++ getHierarchyListLoop(evalFunc(currAcc._2.split(" ").toList),
-                maxP-1, List()) :+ hd, (-1, ""), maxP, false, evalFunc)
+                maxP-1, List()) :+ hd, (-1, ""), maxP, cumulMode=false, evalFunc)
           }
           else {
-            splitPriorityMaxLoop(tail, out :+ hd, (-1, ""), maxP, false, evalFunc)
+            splitPriorityMaxLoop(tail, out :+ hd, (-1, ""), maxP, cumulMode=false, evalFunc)
           }
     }
     case _ => {
@@ -85,6 +85,7 @@ def splitPriorityMaxLoop(hListLeft: HierarchyList, out: HierarchyList,
 }
 
 def reduceExpr(expr: String, evalFunc: List[String] => String): BigInt = {
+  @tailrec
   def reduceExprLoop(pList: HierarchyList, breakP: Int): HierarchyList = {
     val maxP = pList.map(_._2).max
     if (maxP < breakP) pList
@@ -107,5 +108,6 @@ def solvePart2(puzzleInput: List[String]): BigInt = {
 
 val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_18.txt"
 val input = readInputFile(filepath)
+
 solvePart1(input)
 solvePart2(input)
