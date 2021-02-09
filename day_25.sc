@@ -31,14 +31,10 @@ def getEncryptionKey(subjectNumber: Long, loopSize: Int): Long = {
 def solvePart1(filepath: String): Long = {
   val puzzleInput = readInputFile(filepath)
   val (cardPublic, doorPublic) = (puzzleInput.head, puzzleInput.tail.head)
-  val (cardLS, doorLS) = (getLoopSize(cardPublic), getLoopSize(doorPublic))
-  val (cardEK, doorEK) = (getEncryptionKey(doorPublic, cardLS), getEncryptionKey(cardPublic, doorLS))
 
-  assert(cardEK == doorEK)
-
-  cardEK
+  getEncryptionKey(doorPublic, getLoopSize(cardPublic))
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_25.txt"
+val filepath = "your_path_here\\inputs\\input_25.txt"
 
 solvePart1(filepath)

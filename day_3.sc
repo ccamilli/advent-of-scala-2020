@@ -26,7 +26,7 @@ def solvePart2(puzzleInput: Array[String], slopes: List[(Int, Int)]): Long = {
   slopes.map{case (x, y) => solvePart1(puzzleInput, x, y).toLong}.product
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_3.txt"
+val filepath = "your_path_here\\inputs\\input_3.txt"
 
 val puzzleInput = readInputFile(filepath)
 

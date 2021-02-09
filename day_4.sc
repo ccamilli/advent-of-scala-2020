@@ -78,7 +78,7 @@ def solvePart2(filename: String): Int = {
   passportInfo.count{case (_, m) => validatePassport2(m)}
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_4.txt"
+val filepath = "your_path_here\\inputs\\input_4.txt"
 
 solvePart1(filepath)
 solvePart2(filepath)

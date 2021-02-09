@@ -49,7 +49,7 @@ def solvePart2(puzzleInput: List[String]): BigInt = {
   getModularSystem(puzzleInput(1).split(',').toList, List(), 0).reduce(reduceModularSystem)._2
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_13.txt"
+val filepath = "your_path_here\\inputs\\input_13.txt"
 
 val puzzleInput = readInputFile(filepath)
 

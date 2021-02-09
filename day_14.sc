@@ -94,7 +94,7 @@ def solvePart2(puzzleInput: List[String]): BigInt = {
   solvePart2Loop(puzzleInput, "X"*36, Map.empty[BigInt, BigInt]).values.sum
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_14.txt"
+val filepath = "your_path_here\\inputs\\input_14.txt"
 
 solvePart1(readInputFile(filepath))
 solvePart2(readInputFile(filepath))

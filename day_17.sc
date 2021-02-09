@@ -79,7 +79,7 @@ def solvePart2(puzzleInput: List[String]): Long = {
   }
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_17.txt"
+val filepath = "your_path_here\\inputs\\input_17.txt"
 
 solvePart1(readInputFile(filepath))
 solvePart2(readInputFile(filepath))

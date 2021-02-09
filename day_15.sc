@@ -38,7 +38,7 @@ def solvePart2(initialSeq: List[Int]): Int = {
   solveProblem(initDict(initialSeq), initialSeq.takeRight(1).head, initialSeq.size+1, 30000001)
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_15.txt"
+val filepath = "your_path_here\\inputs\\input_15.txt"
 
 solvePart1(readInputFile(filepath))
 solvePart2(readInputFile(filepath))

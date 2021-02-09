@@ -114,7 +114,7 @@ def solvePart2(grid: Grid): Int = {
   if (newGrid == grid) newGrid.countOccupied() else solvePart2(newGrid)
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_11.txt"
+val filepath = "your_path_here\\inputs\\input_11.txt"
 val grid = createGrid(readInputFile(filepath))
 
 solvePart1(grid)

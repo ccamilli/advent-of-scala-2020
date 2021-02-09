@@ -41,7 +41,7 @@ def solvePart1(puzzle_input: List[PuzzleInput]): Int =
 def solvePart2(puzzle_input: List[PuzzleInput]): Int =
   puzzle_input.count(checkValidity2)
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_2.txt"
+val filepath = "your_path_here\\inputs\\input_2.txt"
 
 val puzzleInput = readInputFile(filepath)
 

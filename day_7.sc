@@ -47,7 +47,7 @@ def solvePart2(filename: String) = {
   graphSearch2(buildGraph(filename), "shiny gold")
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_7.txt"
+val filepath = "your_path_here\\inputs\\input_7.txt"
 
 solvePart1(filepath)
 solvePart2(filepath)

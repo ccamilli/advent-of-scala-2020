@@ -35,7 +35,7 @@ def solvePart2(sortedArray: Array[Int]): Long = {
       }
   }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_10.txt"
+val filepath = "your_path_here\\inputs\\input_10.txt"
 
 val p1 = solvePart1(filepath)
 val p2 = solvePart2(Array(0) ++ readInputFile(filepath).sorted.toArray)

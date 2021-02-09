@@ -45,7 +45,7 @@ def solvePart2(input: List[Int]): Int = {
   a._1 * a._2 * a._3
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_1.txt"
+val filepath = "your_path_here\\inputs\\input_1.txt"
 
 val puzzleInput = readInputFile(filepath)
 

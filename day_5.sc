@@ -30,7 +30,7 @@ def solvePart2(filename: String): Int = {
   (seatIds.min to seatIds.max).filter(x => !seatIds.contains(x)).head
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_5.txt"
+val filepath = "your_path_here\\inputs\\input_5.txt"
 
 solvePart1(filepath)
 solvePart2(filepath)

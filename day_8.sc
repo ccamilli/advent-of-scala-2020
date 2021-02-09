@@ -60,7 +60,7 @@ def solvePart2(filename: String): Int = {
   solvePart2Acc(parseInputFile(filename), 0)
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_8.txt"
+val filepath = "your_path_here\\inputs\\input_8.txt"
 
 solvePart1(parseInputFile(filepath)).getOrElse(0)
 solvePart2(filepath)

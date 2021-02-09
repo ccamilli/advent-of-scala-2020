@@ -79,7 +79,7 @@ def solvePart2(filepath: String): Int = {
   calculateScoreLoop(deck.reverse, 0, 1)
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_22.txt"
+val filepath = "your_path_here\\inputs\\input_22.txt"
 
 solvePart1(filepath)
 solvePart2(filepath)

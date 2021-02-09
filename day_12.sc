@@ -78,7 +78,7 @@ def solvePart2(instrList: List[String]): Int = {
   solvePart2Loop(instrList, ShipPosition2((0, 0), (10, 1)))
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_12.txt"
+val filepath = "your_path_here\\inputs\\input_12.txt"
 val inputList = readInputFile(filepath)
 
 solvePart1(inputList)

@@ -41,7 +41,7 @@ def solvePart2(input: List[String]): Int = {
   solvePart2Acc(input, 0, 0, Set())
   }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_6.txt"
+val filepath = "your_path_here\\inputs\\input_6.txt"
 
 solvePart1(readInputFile(filepath))
 solvePart2(readInputFile(filepath))

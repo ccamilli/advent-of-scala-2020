@@ -67,7 +67,7 @@ def solvePart2(puzzleInput: Array[Int]): Long = {
   var1.toLong * var2.toLong
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_23.txt"
+val filepath = "your_path_here\\inputs\\input_23.txt"
 
 val puzzleInput = readInputFile(filepath)
 

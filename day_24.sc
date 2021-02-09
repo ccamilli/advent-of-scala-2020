@@ -78,7 +78,7 @@ def solvePart1(initGrid: TileGrid): Int = initGrid.countBlack
 
 def solvePart2(initGrid: TileGrid): Int = initGrid.updateNTimes(100).countBlack
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_24.txt"
+val filepath = "your_path_here\\inputs\\input_24.txt"
 
 val puzzleInput = readInputFile(filepath)
 

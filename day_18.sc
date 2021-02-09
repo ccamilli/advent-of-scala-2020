@@ -106,7 +106,7 @@ def solvePart2(puzzleInput: List[String]): BigInt = {
   puzzleInput.map(x => reduceExpr(x, eval2)).sum
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_18.txt"
+val filepath = "your_path_here\\inputs\\input_18.txt"
 val input = readInputFile(filepath)
 
 solvePart1(input)

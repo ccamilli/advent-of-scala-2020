@@ -81,7 +81,7 @@ def solvePart2(overallInfo: ParsedInfo, transposed: List[List[Int]], myTicketInf
   myTicketInfo.zipWithIndex.collect{case (x, i) if ixs.contains(i) => x.toLong}.product
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_16.txt"
+val filepath = "your_path_here\\inputs\\input_16.txt"
 val puzzleInput = readInputFile(filepath)
 
 val (inputLeft, overallInfo) = parseInfo(puzzleInput, Map())

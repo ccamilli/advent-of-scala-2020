@@ -78,7 +78,7 @@ def solvePart2(parsedInput: List[(Set[Ingredient], Set[Allergen])]): String = {
     parsedInput.map(_._2).reduce(_ ++ _)).toList.sortBy(_._2).map(_._1).reduce(_ ++ "," ++ _)
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_21.txt"
+val filepath = "your_path_here\\inputs\\input_21.txt"
 
 solvePart1(readInputFile(filepath).map(parseRow))
 solvePart2(readInputFile(filepath).map(parseRow))

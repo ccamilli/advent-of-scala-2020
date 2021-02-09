@@ -132,7 +132,7 @@ def solvePart2(strings: List[String], rules: Map[Int, Rule]): Int = {
   sets.reduce(_++_).size
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_19.txt"
+val filepath = "your_path_here\\inputs\\input_19.txt"
 
 val (rulesRaw, strList) = extractRules(readInputFile(filepath), List.empty[String])
 val rules = createRulesDict(rulesRaw)

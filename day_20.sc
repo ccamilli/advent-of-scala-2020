@@ -180,7 +180,7 @@ def solvePart2(img: Img): Int = {
   bitImages.head.flatten.sum - occupied
 }
 
-val filepath = "C:\\Users\\c.camilli\\OneDrive - CRITEO\\PERSONNEL\\Advent of code 2020\\inputs\\input_20.txt"
+val filepath = "your_path_here\\inputs\\input_20.txt"
 
 val mapTiles = isolateTiles(readInputFile(filepath))
 
